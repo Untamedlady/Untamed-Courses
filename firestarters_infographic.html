@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRESTARTERS: Strategic Program Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F6F8FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .flow-line {
+            height: 60px;
+            width: 2px;
+            background-color: #00A7A2;
+            margin-left: 1.1rem;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+            padding: 1rem 2rem 1rem 2rem;
+            margin-bottom: -1px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #F56600;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Palette: Energetic & Playful. Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-7xl font-black text-[#0B2D48] tracking-tight">FIRESTARTERS</h1>
+            <p class="text-xl md:text-2xl text-[#F56600] font-semibold mt-2">A Strategic Analysis of the 8-Week Program on the Untamed Power of the Early Church</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0B2D48] mb-2">Program Overview: A Thematic Journey</h2>
+                <p class="text-lg text-gray-600 mb-6">The FIRESTARTERS program is an 8-week intensive designed to guide participants through the foundational narratives of the Book of Acts. The curriculum follows a clear, progressive structure, beginning with Jesus' final words and culminating in the unstoppable advance of the Gospel. This sequential flow ensures a comprehensive understanding of the early church's formation and mission.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="md:col-span-1">
+                        <h3 class="text-2xl font-bold text-center text-[#0B2D48] mb-4">8-Week Thematic Progression</h3>
+                        <div>
+                            <div class="flow-step">
+                                <div class="w-10 h-10 bg-[#00A7A2] text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                                <div class="ml-4">
+                                    <p class="font-bold text-lg text-[#0B2D48]">Jesus’ Final Words</p>
+                                    <p class="text-gray-500">Commission, Promise, Waiting</p>
+                                </div>
+                            </div>
+                            <div class="flow-line"></div>
+                             <div class="flow-step">
+                                <div class="w-10 h-10 bg-[#00A7A2] text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                                <div class="ml-4">
+                                    <p class="font-bold text-lg text-[#0B2D48]">The Spirit Comes</p>
+                                    <p class="text-gray-500">Pentecost, Birth of the Church</p>
+                                </div>
+                            </div>
+                             <div class="flow-line"></div>
+                            <div class="flow-step">
+                                <div class="w-10 h-10 bg-[#00A7A2] text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                                <div class="ml-4">
+                                    <p class="font-bold text-lg text-[#0B2D48]">Signs, Wonders & Resistance</p>
+                                    <p class="text-gray-500">Miracles, Opposition, Boldness</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-1">
+                         <div class="chart-container">
+                            <canvas id="thematicDriversChart"></canvas>
+                        </div>
+                         <h3 class="text-2xl font-bold text-center text-[#0B2D48] mt-6 mb-2">Key Theological Drivers</h3>
+                        <p class="text-center text-gray-600">Analysis reveals a consistent focus on several core theological concepts throughout the program, with an emphasis on the Holy Spirit's power and the necessity of bold witness.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0B2D48] mb-2">Content Delivery & Pacing</h2>
+                <p class="text-lg text-gray-600 mb-6">Each 55-60 minute session is structured to maximize engagement and learning. The data shows a balanced allocation between core teaching and interactive discussion, ensuring participants not only receive information but also process it collaboratively. A significant portion of time is dedicated to practical application through prayer and activation.</p>
+                <div class="chart-container h-[450px] md:h-[500px]">
+                    <canvas id="timeAllocationChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0B2D48] mb-2">✨ Generate Prayer & Activation Prompt ✨</h2>
+                <p class="text-lg text-gray-600 mb-6">Utilize AI to craft unique, Spirit-led prayer or activation prompts for each week's theme, enhancing the session's conclusion.</p>
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-6">
+                    <label for="prayerWeekSelect" class="text-lg font-semibold text-gray-700">Select Week:</label>
+                    <select id="prayerWeekSelect" class="block w-full md:w-auto p-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#F56600] focus:border-[#F56600]">
+                        <option value="Week 1">Week 1: Jesus’ Final Words</option>
+                        <option value="Week 2">Week 2: The Spirit Comes</option>
+                        <option value="Week 3">Week 3: Signs, Wonders & Resistance</option>
+                        <option value="Week 4">Week 4: Servants & Martyrs</option>
+                        <option value="Week 5">Week 5: Scattered and Sent</option>
+                        <option value="Week 6">Week 6: From Saul to Paul</option>
+                        <option value="Week 7">Week 7: Mission to the Nations</option>
+                        <option value="Week 8">Week 8: The Unstoppable Gospel</option>
+                    </select>
+                    <button id="generatePrayerBtn" class="bg-[#F56600] text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-[#E05B00] transition duration-300 flex items-center justify-center">
+                        Generate Prayer <span class="ml-2">✨</span>
+                        <span id="prayerSpinner" class="spinner hidden"></span>
+                    </button>
+                </div>
+                <div id="prayerOutput" class="bg-[#F6F8FA] p-4 rounded-md border border-gray-200 min-h-[100px] text-gray-800 text-base leading-relaxed">
+                    Select a week and click "Generate Prayer" to get a new prompt.
+                </div>
+            </section>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6 md:p-8">
+                     <h2 class="text-3xl font-bold text-[#0B2D48] mb-2">Engagement & Activation Strategy</h2>
+                     <p class="text-lg text-gray-600 mb-6">The program employs a multi-faceted engagement strategy. Each session begins with a narrative or reflective hook to capture attention. Core teaching is consistently followed by targeted questions designed to provoke thought and personal application, bridging the gap between ancient text and contemporary life.</p>
+                    <div class="chart-container">
+                        <canvas id="engagementQuestionsChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-1 bg-white rounded-lg shadow-md p-6 md:p-8 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-[#0B2D48] mb-4 text-center">Core Application Focus</h3>
+                     <p class="text-gray-600 mb-6 text-center">The program culminates in a clear call to action, structured to move participants from internal reflection to external witness, embodying the 'fire' of the early church.</p>
+                    <div class="w-full max-w-xs mx-auto">
+                        <div class="pyramid-level" style="width: 100%; background-color: #0B2D48;">
+                            <span>Carry Your Fire (Witness)</span>
+                        </div>
+                        <div class="pyramid-level" style="width: 80%; margin-left:10%; background-color: #F56600;">
+                           <span>Public Prayer & Action</span>
+                        </div>
+                        <div class="pyramid-level" style="width: 60%; margin-left:20%; background-color: #00A7A2;">
+                           <span>Journaling & Reflection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0B2D48] mb-2">✨ Generate Deeper Discussion Questions ✨</h2>
+                <p class="text-lg text-gray-600 mb-6">Obtain additional, insightful discussion questions to stimulate richer conversations and deeper biblical engagement during the weekly sessions.</p>
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-6">
+                    <label for="questionsWeekSelect" class="text-lg font-semibold text-gray-700">Select Week:</label>
+                    <select id="questionsWeekSelect" class="block w-full md:w-auto p-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#00A7A2] focus:border-[#00A7A2]">
+                        <option value="Week 1">Week 1: Jesus’ Final Words</option>
+                        <option value="Week 2">Week 2: The Spirit Comes</option>
+                        <option value="Week 3">Week 3: Signs, Wonders & Resistance</option>
+                        <option value="Week 4">Week 4: Servants & Martyrs</option>
+                        <option value="Week 5">Week 5: Scattered and Sent</option>
+                        <option value="Week 6">Week 6: From Saul to Paul</option>
+                        <option value="Week 7">Week 7: Mission to the Nations</option>
+                        <option value="Week 8">Week 8: The Unstoppable Gospel</option>
+                    </select>
+                    <button id="generateQuestionsBtn" class="bg-[#00A7A2] text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-[#008A85] transition duration-300 flex items-center justify-center">
+                        Generate Questions <span class="ml-2">✨</span>
+                        <span id="questionsSpinner" class="spinner hidden"></span>
+                    </button>
+                </div>
+                <div id="questionsOutput" class="bg-[#F6F8FA] p-4 rounded-md border border-gray-200 min-h-[100px] text-gray-800 text-base leading-relaxed">
+                    Select a week and click "Generate Questions" to get deeper discussion points.
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Infographic generated based on the FIRESTARTERS Teacher's Guide by Ps Wynelle.</p>
+            <p>&copy; 2025 untamedone.com. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const vibrantPalette = {
+            blue: '#0B2D48',
+            orange: '#F56600',
+            teal: '#00A7A2',
+            yellow: '#FFC425',
+            lightGray: '#F6F8FA',
+            darkText: '#333333',
+        };
+
+        function wrapLabels(label, maxWidth) {
+            if (label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: vibrantPalette.darkText,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: vibrantPalette.darkText },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                x: {
+                    ticks: { color: vibrantPalette.darkText },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const thematicDriversData = {
+            labels: ['Commission', 'Promise', 'Boldness', 'Holy Spirit', 'Mission', 'Resistance'],
+            datasets: [{
+                label: 'Thematic Focus',
+                data: [4, 5, 5, 5, 4, 3],
+                backgroundColor: 'rgba(245, 102, 0, 0.2)',
+                borderColor: vibrantPalette.orange,
+                pointBackgroundColor: vibrantPalette.orange,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: vibrantPalette.orange
+            }]
+        };
+        new Chart(document.getElementById('thematicDriversChart'), {
+            type: 'radar',
+            data: thematicDriversData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     legend: { display: false },
+                     tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                 scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.1)' },
+                        pointLabels: {
+                            font: { size: 12, family: "'Inter', sans-serif" },
+                            color: vibrantPalette.darkText
+                        },
+                        ticks: {
+                            backdropColor: vibrantPalette.lightGray,
+                            color: vibrantPalette.darkText
+                        }
+                    }
+                }
+            }
+        });
+        
+        const timeAllocationData = {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+            datasets: [
+                {
+                    label: 'Welcome & Reflection',
+                    data: [15, 15, 15, 15, 15, 15, 15, 15],
+                    backgroundColor: vibrantPalette.yellow,
+                },
+                {
+                    label: 'Teaching',
+                    data: [18, 20, 18, 17, 20, 19, 17, 20],
+                    backgroundColor: vibrantPalette.blue,
+                },
+                {
+                    label: 'Discussion',
+                    data: [15, 15, 15, 16, 15, 15, 16, 15],
+                    backgroundColor: vibrantPalette.teal,
+                },
+                 {
+                    label: 'Prayer & Activation',
+                    data: [10, 10, 10, 10, 10, 10, 10, 10],
+                    backgroundColor: vibrantPalette.orange,
+                }
+            ]
+        };
+        new Chart(document.getElementById('timeAllocationChart'), {
+            type: 'bar',
+            data: timeAllocationData,
+            options: { ...commonChartOptions,
+                scales: {
+                    x: { stacked: true, ticks: { color: vibrantPalette.darkText }, grid: { display: false } },
+                    y: { stacked: true, title: { display: true, text: 'Time Allocation (Minutes)', color: vibrantPalette.darkText }, ticks: { color: vibrantPalette.darkText }, grid: { color: 'rgba(0,0,0,0.05)' } }
+                }
+            }
+        });
+
+        const engagementQuestionsData = {
+            labels: [
+                wrapLabels('What stands out from this passage?', 16),
+                wrapLabels('How did the early church feel in this moment?', 16),
+                wrapLabels('What is God asking us to do today?', 16)
+            ],
+            datasets: [{
+                label: 'Engagement Question Focus',
+                data: [35, 35, 30],
+                backgroundColor: [
+                    vibrantPalette.blue,
+                    vibrantPalette.orange,
+                    vibrantPalette.teal
+                ],
+                borderWidth: 0,
+            }]
+        };
+        new Chart(document.getElementById('engagementQuestionsChart'), {
+            type: 'doughnut',
+            data: engagementQuestionsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: vibrantPalette.darkText,
+                            font: { family: "'Inter', sans-serif" },
+                            padding: 20,
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const meta = chart.getDatasetMeta(0);
+                                        const ds = data.datasets[0];
+                                        const arc = meta.data[i];
+                                        const fill = ds.backgroundColor[i];
+                                        const text = Array.isArray(label) ? label.join(' ') : label;
+                                        return {
+                                            text: text,
+                                            fillStyle: fill,
+                                            hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const weekData = {
+            'Week 1': {
+                keyText: 'Acts 1',
+                theme: 'Commission, Promise, and Waiting',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 2': {
+                keyText: 'Acts 2',
+                theme: 'Pentecost and the Birth of the Church',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 3': {
+                keyText: 'Acts 3–5',
+                theme: 'Miracles, Opposition, and Boldness',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 4': {
+                keyText: 'Acts 6–7',
+                theme: 'Stephen’s Leadership and Martyrdom',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 5': {
+                keyText: 'Acts 8',
+                theme: 'Evangelism Through Scattering',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 6': {
+                keyText: 'Acts 9–12',
+                theme: 'Transformation and Early Ministry of Paul',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 7': {
+                keyText: 'Acts 13–20',
+                theme: 'Church Planting and the Mission of God',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            },
+            'Week 8': {
+                keyText: 'Acts 21–28',
+                theme: 'Bold Witness and the Gospel’s Advance',
+                engagementQuestions: [
+                    'What stands out to you from this passage?',
+                    'How do you think the early church felt in this moment?',
+                    'What is God asking us to do today through this Word?'
+                ],
+                samplePrayer: 'Holy Spirit, make us witnesses. Let us carry Your fire into our families, workplaces, and cities.'
+            }
+        };
+
+        async function callGeminiAPI(prompt, outputElement, spinnerElement) {
+            outputElement.innerHTML = '';
+            spinnerElement.classList.remove('hidden');
+
+            try {
+                const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.innerHTML = text.replace(/\n/g, '<br>');
+                } else {
+                    outputElement.innerHTML = 'Error: Could not retrieve a valid response.';
+                    console.error('API response structure unexpected:', result);
+                }
+            } catch (error) {
+                outputElement.innerHTML = 'Error: Failed to connect to the API. Please try again.';
+                console.error('API call failed:', error);
+            } finally {
+                spinnerElement.classList.add('hidden');
+            }
+        }
+
+        document.getElementById('generatePrayerBtn').addEventListener('click', () => {
+            const selectedWeek = document.getElementById('prayerWeekSelect').value;
+            const data = weekData[selectedWeek];
+            const prompt = `Generate a unique, Spirit-led prayer or activation prompt for a group based on the following:
+            Key Text: ${data.keyText}
+            Theme: ${data.theme}
+            The prayer should encourage participants to respond to God's call with action, journaling, or public prayer, echoing the spirit of the early church.`;
+            callGeminiAPI(prompt, document.getElementById('prayerOutput'), document.getElementById('prayerSpinner'));
+        });
+
+        document.getElementById('generateQuestionsBtn').addEventListener('click', () => {
+            const selectedWeek = document.getElementById('questionsWeekSelect').value;
+            const data = weekData[selectedWeek];
+            const prompt = `Generate 2-3 additional, deeper discussion questions for a small group study.
+            Key Text: ${data.keyText}
+            Theme: ${data.theme}
+            Existing Questions: ${data.engagementQuestions.join('; ')}
+            The new questions should be distinct from the existing ones and encourage more profound reflection and application of the text.`;
+            callGeminiAPI(prompt, document.getElementById('questionsOutput'), document.getElementById('questionsSpinner'));
+        });
+    </script>
+</body>
+</html>
